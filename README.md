@@ -69,5 +69,37 @@ set-option -g status-position top
 set -g escape-time 10
 
 ```
-
+vscode task.json file 
+- copy and paste it in configure user tasks
+```
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "compile",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-std=c++17",
+                "-o",
+                "${fileBasenameNoExtension}",
+                "${file}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            "label": "compile and run",
+            "type": "shell",
+            "command": "g++ -std=c++17 -Wshadow -Wall -o ${fileBasenameNoExtension} ${file} -g -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG && ./${fileBasenameNoExtension}",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
+```
 
